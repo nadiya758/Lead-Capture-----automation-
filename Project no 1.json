@@ -1,0 +1,777 @@
+{
+  "name": "project NO 1 day no 1  in project",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "lead capture ",
+        "formDescription": "Welcome! Please fill out this form with your name, email address, and learning interest. We will use this information to provide you with a personalized AI-generated welcome email and learning guidance.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "name ",
+              "placeholder": "Enter you name ",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "placeholder": "Enter you Email ",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Profession ",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "ML"
+                  },
+                  {
+                    "option": "Web "
+                  },
+                  {
+                    "option": "Automation "
+                  },
+                  {
+                    "option": "Data science "
+                  },
+                  {
+                    "option": "Python "
+                  },
+                  {
+                    "option": "Programming "
+                  },
+                  {
+                    "option": "Artificial Interlligence (AI)"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Phone Number ",
+              "placeholder": "Enter you Phone number"
+            },
+            {
+              "fieldLabel": "Summery ",
+              "placeholder": "Enter you Summery !"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        -608,
+        -48
+      ],
+      "id": "a9a39f01-4921-484d-a33f-5954d694eab7",
+      "name": "lead Capture",
+      "webhookId": "158de0cb-88ad-4cb4-9f95-8177ee6734cc"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "608d5305-24cc-4a8b-b054-1a4a0e23c71e",
+              "leftValue": "={{ $json.Email }}",
+              "rightValue": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -384,
+        -48
+      ],
+      "id": "61bf0941-d17f-4bb3-86db-b62e5545c26a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "apphDSpfzX9Qovpan",
+          "mode": "list",
+          "cachedResultName": "module9",
+          "cachedResultUrl": "https://airtable.com/apphDSpfzX9Qovpan"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblv18tQs01cpwlUt",
+          "mode": "list",
+          "cachedResultName": "valid",
+          "cachedResultUrl": "https://airtable.com/apphDSpfzX9Qovpan/tblv18tQs01cpwlUt"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json['name '] }}",
+            "Phone number ": "={{ $json['Phone Number '] }}",
+            "Email ": "={{ $json.Email }}",
+            "Summery": "={{ $json['Summery '] }}",
+            "Profession": "={{ [$json['Profession '] ]}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email ",
+              "displayName": "Email ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Phone number ",
+              "displayName": "Phone number ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Summery",
+              "displayName": "Summery",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Profession",
+              "displayName": "Profession",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "options": [
+                {
+                  "name": "ML",
+                  "value": "ML"
+                },
+                {
+                  "name": "Web",
+                  "value": "Web"
+                },
+                {
+                  "name": "Automation ",
+                  "value": "Automation "
+                },
+                {
+                  "name": "Data science ",
+                  "value": "Data science "
+                },
+                {
+                  "name": "Python ",
+                  "value": "Python "
+                },
+                {
+                  "name": "Programming ",
+                  "value": "Programming "
+                },
+                {
+                  "name": "Artificial Interlligence (AI)",
+                  "value": "Artificial Interlligence (AI)"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Roadmap ",
+              "displayName": "Roadmap ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        -160,
+        -144
+      ],
+      "id": "7b5f44d8-57c8-4662-a097-328b9ad41e09",
+      "name": "Create a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0VVnIDmNzvfAeTZo",
+          "name": "Airtable Personal Access Token account 577"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "apphDSpfzX9Qovpan",
+          "mode": "list",
+          "cachedResultName": "module9",
+          "cachedResultUrl": "https://airtable.com/apphDSpfzX9Qovpan"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl3Zm660fORsdR0d",
+          "mode": "list",
+          "cachedResultName": "invalid.",
+          "cachedResultUrl": "https://airtable.com/apphDSpfzX9Qovpan/tbl3Zm660fORsdR0d"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $('lead Capture').item.json['name '] }}",
+            "Phone number ": "={{ $('lead Capture').item.json['Phone Number '] }}",
+            "Profession ": "={{ [$json['Profession '] ]}}",
+            "Email": "={{ $('lead Capture').item.json.Email }}",
+            "Summery ": "={{ $('lead Capture').item.json['Summery '] }}",
+            "validation Status ": "Invalid ",
+            "Error_reason ": "Email format is invalid ",
+            "Submitted_At ": "={{ $('lead Capture').item.json.submittedAt }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Phone number ",
+              "displayName": "Phone number ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Summery ",
+              "displayName": "Summery ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Profession ",
+              "displayName": "Profession ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "options": [
+                {
+                  "name": "ML",
+                  "value": "ML"
+                },
+                {
+                  "name": "Web ",
+                  "value": "Web "
+                },
+                {
+                  "name": "Automation ",
+                  "value": "Automation "
+                },
+                {
+                  "name": "Data science ",
+                  "value": "Data science "
+                },
+                {
+                  "name": "Python ",
+                  "value": "Python "
+                },
+                {
+                  "name": "Programming ",
+                  "value": "Programming "
+                },
+                {
+                  "name": "Artificial Interlligence (AI)",
+                  "value": "Artificial Interlligence (AI)"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "roadmapp",
+              "displayName": "roadmapp",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "validation Status ",
+              "displayName": "validation Status ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Error_reason ",
+              "displayName": "Error_reason ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Submitted_At ",
+              "displayName": "Submitted_At ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        -160,
+        48
+      ],
+      "id": "7eb49ba3-6ad4-46c5-9145-e3eb043b45a1",
+      "name": "Create a record1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0VVnIDmNzvfAeTZo",
+          "name": "Airtable Personal Access Token account 577"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an AI Learning Roadmap Agent.\n\nYour job is to create a clear, personalized, practical, and complete learning roadmap based on the user's information.\n\nUSER INPUT:\n\nName : {{ $json.fields.Name }}\nEmail:{{ $json.fields['Email '] }}\n\nLearning Interest :{{ $json.fields.Profession }} \nLANGUAGE RULE — VERY IMPORTANT:\n\n1. You MUST generate the entire response in Bengali.\n2. Do NOT answer in English.\n3. Use simple, natural, easy-to-understand Bengali.\n4. Technical terms such as Python, Machine Learning, SQL, GitHub, React, NumPy, Pandas, API, etc. may remain in English when necessary.\n5. Explain those technical terms in simple Bengali when appropriate.\n6. Headings and explanations should also be in Bengali.\n7. Do not translate technical programming keywords unnecessarily.\n8. The user's name and learning-interest name can remain in their original form.\n9. Even if the user's input is written in English, the final roadmap MUST be written in Bengali.\n10. The response should feel like a Bengali teacher is personally explaining the roadmap to the learner.\n\nMAIN OBJECTIVE:\n\nWhen a user tells you what they want to learn, create a complete learning path from beginner level to advanced/job-ready level.\n\nPERSONALIZATION:\n\n1. Address the user by their name.\n2. Use their learning interest to determine the roadmap.\n3. Assume the user is a beginner unless their input clearly indicates prior experience.\n4. Focus on practical skills rather than unnecessary theory.\n5. Include exercises, projects, and real-world applications.\n6. Organize topics in a logical order so that each stage prepares the learner for the next stage.\n7. If the learning goal is broad, divide it into smaller skill areas.\n\nROADMAP LENGTH:\n\nThe complete response MUST be between 200 and 1000 words.\n\nDo not exceed 1000 words.\n\nDo not make the roadmap unnecessarily long.\n\nSTART OF CONVERSATION:\n\nStart the response with:\n\n\"আসসালামু আলাইকুম!{{ $json.fields.Name }} 🌸\"\n\nThen write:\n\n\"আপ  {{ $json.fields.Profession[0] }}  শিখতে চান। আপনার জন্য beginner থেকে job-ready level পর্যন্ত একটি সহজ ও practical learning roadmap তৈরি করে দিলাম।\"\n\nROADMAP STRUCTURE:\n\n### ১. 🎯 লক্ষ্য\n\nExplain in simple Bengali what the learner will be able to do after completing the roadmap.\n\n### ২. 📚 শুরু করার আগে যা জানা দরকার\n\nList the necessary prerequisites.\n\nIf there are no important prerequisites, say:\n\n\"এই শেখার পথ শুরু করার জন্য বিশেষ কোনো prerequisite দরকার নেই।\"\n\n### ৩. 🗺️ Learning Roadmap\n\nDivide the learning journey into logical phases.\n\nFor each phase include:\n\n* Phase name\n* কী শিখবেন\n* গুরুত্বপূর্ণ concepts\n* কী practice করবেন\n* একটি practical project\n* এই phase শেষে কী করতে পারবেন\n\n### ৪. 💻 Project-Based Learning\n\nInclude projects with increasing difficulty:\n\n* Beginner Project\n* Intermediate Project\n* Advanced Project\n* Final Portfolio / Job-Ready Project\n\nProjects must be realistic and directly related to the user's learning goal.\n\n### ৫. ✍️ Practice Plan\n\nExplain what the learner should practice after learning each major topic.\n\nFocus on hands-on practice.\n\n### ৬. 🛠️ Tools & Technologies\n\nMention the important tools, libraries, frameworks, platforms, or software required for the learning path.\n\nKeep technical names in English when appropriate.\n\n### ৭. ⏳ Timeline\n\nGive a realistic estimated timeline.\n\nFor example:\n\n* প্রথম ৩০ দিন\n* ৩১–৬০ দিন\n* ৬১–৯০ দিন\n* ৩–৬ মাস\n\nMention that the actual timeline depends on how many hours the learner studies each day.\n\n### ৮. 💼 Job-Ready Skills\n\nExplain in Bengali what skills the learner should have before applying for:\n\n* Internship\n* Freelancing\n* Junior jobs\n* Remote jobs\n\nDo not guarantee employment.\n\n### ৯. 🏆 Portfolio\n\nRecommend 3–5 practical projects that the learner can showcase on GitHub or in a portfolio.\n\n### ১০. 🚀 এখন কী করবেন\n\nEnd with exactly 3 simple actionable steps:\n\n1. প্রথমে কী শিখবেন\n2. এরপর কী practice করবেন\n3. প্রথম project কীভাবে শুরু করবেন\n\nIMPORTANT RULES:\n\n* Entire response MUST be in Bengali.\n* Use simple Bengali suitable for a beginner.\n* Do not use unnecessary English sentences.\n* Technical terms may remain in English.\n* Do not give generic motivational speeches.\n* Do not add unrelated topics.\n* Do not assume advanced knowledge.\n* Explain dependencies between topics.\n* Prioritize practical learning over excessive theory.\n* Include projects wherever appropriate.\n* If the user's learning goal is unclear, make a reasonable assumption and clearly mention it.\n* Never invent certifications, courses, or resources.\n* Do not claim that completing the roadmap guarantees a job.\n* Keep the roadmap between 200 and 1000 words.\n* Make the roadmap actionable enough that the learner can follow it without needing another roadmap.\n\nFINAL INSTRUCTION:\n\nBefore generating the answer, identify the user's learning interest from:\n{{ $json.fields['Profession '][0] }}\n\n\nThen create the roadmap specifically for that learning interest.\n\nThe final answer MUST be written in Bengali.\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        64,
+        -144
+      ],
+      "id": "79295570-4aa9-45dd-b1ae-eb9f70e561e4",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        144,
+        96
+      ],
+      "id": "d65cd30a-65f8-40cf-a536-6b7a01fe3994",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "zvFmgHVYGykNhwy1",
+          "name": "OpenAI account 733"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "nadia21jahan@gmail.com",
+        "subject": "Welcome to you Learning  Journey! ",
+        "message": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        -144
+      ],
+      "id": "9624b736-0d38-492d-b24c-fa1f0a31a78c",
+      "name": "Send a message",
+      "webhookId": "1dfe3435-45f1-4b4b-bba0-1af7f47f87c5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "7qMQw7lch9YJWsiA",
+          "name": "Real personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0C6BJK395K",
+          "mode": "list",
+          "cachedResultName": "leads1"
+        },
+        "text": "ThIs content is unavalible in this version of the app.",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.7,
+      "position": [
+        640,
+        -144
+      ],
+      "id": "96220035-2786-4164-937f-11aa31a06b2d",
+      "name": "Update reocord ",
+      "webhookId": "e4ff9e93-3135-46ae-a871-e9f3c7551a62",
+      "credentials": {
+        "slackApi": {
+          "id": "pJ8b4wtLPToAwW62",
+          "name": "Slack account 157"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "apphDSpfzX9Qovpan",
+          "mode": "list",
+          "cachedResultName": "module9",
+          "cachedResultUrl": "https://airtable.com/apphDSpfzX9Qovpan"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblv18tQs01cpwlUt",
+          "mode": "list",
+          "cachedResultName": "valid",
+          "cachedResultUrl": "https://airtable.com/apphDSpfzX9Qovpan/tblv18tQs01cpwlUt"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Create a record').item.json.id }}",
+            "Roadmap ": "={{ $('AI Agent').item.json.output }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email ",
+              "displayName": "Email ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Phone number ",
+              "displayName": "Phone number ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Summery",
+              "displayName": "Summery",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Profession",
+              "displayName": "Profession",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "options": [
+                {
+                  "name": "ML",
+                  "value": "ML"
+                },
+                {
+                  "name": "Web",
+                  "value": "Web"
+                },
+                {
+                  "name": "Automation ",
+                  "value": "Automation "
+                },
+                {
+                  "name": "Data science ",
+                  "value": "Data science "
+                },
+                {
+                  "name": "Python ",
+                  "value": "Python "
+                },
+                {
+                  "name": "Programming ",
+                  "value": "Programming "
+                },
+                {
+                  "name": "Artificial Interlligence (AI)",
+                  "value": "Artificial Interlligence (AI)"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Roadmap ",
+              "displayName": "Roadmap ",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        864,
+        -144
+      ],
+      "id": "f8afede7-d63d-4841-81a2-f664799bfaf9",
+      "name": "Update record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0VVnIDmNzvfAeTZo",
+          "name": "Airtable Personal Access Token account 577"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "lead Capture": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Create a record",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a record1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a record": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Update reocord ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update reocord ": {
+      "main": [
+        [
+          {
+            "node": "Update record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "112c2089-6f6d-4021-9424-32a46bc471f5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ab95a641c1b7099ef407af1cf01df77e8f73a8620f3dfa9286ddaad6ae2c066b"
+  },
+  "nodeGroups": [],
+  "id": "YnpAfNfLhvt7rfnK",
+  "tags": []
+}
