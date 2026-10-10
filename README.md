@@ -37,7 +37,9 @@ Project screenshots are available in the "screenshots" folder.
 
 Demo Video
 
-Demo video: [Add your Google Drive or YouTube link here]
+Watch the complete workflow demonstration here:
+
+"▶ Watch n8n Lead Capture Automation Demo" https://drive.google.com/file/d/1neIXo03xCoL0qmKw2uBDhyCZkfy3jHT4/view?usp=drivesdk
 
 Security
 
